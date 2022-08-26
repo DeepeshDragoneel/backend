@@ -14,10 +14,12 @@ const app = express();
 
 app.use(cors());
 
-app.use(fileupload({
-    useTempFiles : true,
-    tempFileDir : '/tmp/'
-}));
+app.use(
+    fileupload({
+        useTempFiles: true,
+        tempFileDir: "/tmp/",
+    })
+);
 
 app.use(bodyParser.json());
 
@@ -36,8 +38,10 @@ app.enable("trust proxy");
 
 app.use(morgan("method :url :response-time ms"));
 
-app.listen(8000,(err)=>{
-    if(err){
+const port = process.env.PORT || 8000;
+
+app.listen(port, (err) => {
+    if (err) {
         console.log(err);
         return;
     }
